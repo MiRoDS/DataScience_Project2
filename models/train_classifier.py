@@ -28,16 +28,16 @@ import pickle
 
 
 def load_data(database_filepath):
-	# load data from database
-	engine = create_engine(database_filepath)
-	df = pd.read_sql_table('OneAndOnlyTable', engine)
-	X = df['message']
-	Y = df.loc[:, 'related':'direct_report']
-	category_names = pd.Series(df.columns)
-	category_names = category_names.loc[4:]
-	return X, Y, category_names
+    # load data from database
+    engine = create_engine("sqlite:///"+database_filepath)
+    df = pd.read_sql_table('OneAndOnlyTable', engine)
+    X = df['message']
+    Y = df.loc[:, 'related':'direct_report']
+    category_names = pd.Series(df.columns)
+    category_names = category_names.loc[4:]
+    return X, Y, category_names
 
-	
+
 def tokenize(text):
     text = re.sub(r"[^a-zA-Z0-9]", " ", text)
     tokens = word_tokenize(text)
@@ -49,18 +49,30 @@ def tokenize(text):
         clean_tokens.append(clean_tok)
 
     return clean_tokens
-	
+
 
 def build_model():
-    pass
+    model = Pipeline([
+        ('vect', CountVectorizer(tokenizer=tokenize)),
+        ('tfidf', TfidfTransformer()),
+        ('clf', MultiOutputClassifier(KNeighborsClassifier()))
+    ])    
+    return model
 
 
 def evaluate_model(model, X_test, Y_test, category_names):
-    pass
+    # Predict categories for test data
+    Y_pred = pipeline.predict(X_test)
+    
+    # Print accuracy for each category    
+    accuracy = (Y_pred == Y_test).mean()
+    print("Accuracy:")
+    print(accuracy)
 
 
 def save_model(model, model_filepath):
-    pass
+    with open(model_filepath, 'wb') as f:
+        pickle.dump(model, f)
 
 
 def main():
