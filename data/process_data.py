@@ -51,7 +51,7 @@ def clean_data(df):
 
 def save_data(df, database_filename):
     # Create a database
-    engine = create_engine(database_filename)
+    engine = create_engine("sqlite:///"+database_filename)
     
     #Store the dataframe as a database table
     df.to_sql('OneAndOnlyTable', engine, index=False)  
