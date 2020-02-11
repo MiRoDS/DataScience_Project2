@@ -36,6 +36,9 @@ def clean_data(df):
     for column in categories:
         # set each value to be the last character of the string
         categories[column] = categories[column].map(lambda i: (i[-1:]))
+
+        # convert column from string to numeric
+        categories[column] = categories[column].astype(int)
     
     # drop the original categories column from `df`
     del df['categories']
