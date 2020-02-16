@@ -30,11 +30,11 @@ models
     - Subsequently, run the ML pipeline that trains the classifier and saves it. The first parameter is the path to the previously created database. Do not change the second parameter which specifies the output file path. The web app requires that the file is names "classifier.pkl". To process the pipeline, enter:
         `python models/train_classifier.py data/DisasterResponse.db models/classifier.pkl`
 
-2. Run the following command in the app's directory (Very important!) to run the web app.
+2. Run the following command from the app directory to run the web app.
 	- Enter the command `env | grep WORK` to find your workspace variables
 	- Enter the command `python run.py`
     
-3. Open a new web browser window and go to the web address: 
+3. Open a new web browser window and go to the following web address: 
 	`http://WORKSPACESPACEID-3001.WORKSPACEDOMAIN` replacing WORKSPACEID and WORKSPACEDOMAIN with your values. Note: This works only in the Udacity Project Workspace IDE. If you run the application somewhere else, check the corresponding instructions. 
 
 ## 5. Licensing, Authors, Acknowledgements
