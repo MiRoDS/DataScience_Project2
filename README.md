@@ -10,17 +10,19 @@ Goal was to find out whethers renters can benefit from the findings if it is pos
 
 ## 3. File Description
 The project has the following structure:
+```bash
 app
 ├── templates
 │   ├── go.html
-│   ├── master.html
-├── run.py
+│   └── master.html
+└── run.py
 data
 ├── disaster_categories.csv
 ├── disaster_messages.csv
-├── process_data.py
+└── process_data.py
 models
-├── train_classifier
+└── train_classifier
+```
 
 ## 4. How to execute the project:
 
