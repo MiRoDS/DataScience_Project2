@@ -2,27 +2,27 @@
 
 This is the second project of the Data Science Nanodegree program.
 
-##1. Installations
+## 1. Installations
 The 3 folders app, data, and model must be copied to a server which runs Flask, Python, and the following Python packages: Pandas, Matplotlib, and scikit-learn.
 
-##2. Project Motivation
+## 2. Project Motivation
 Goal was to find out whethers renters can benefit from the findings if it is possible to influence the review score rating.
 
-##3. File Description
+## 3. File Description
 The project has the following structure:
 app
-|-templates
-| |-go.html
-| |-master.html
-|-run.py
++-- templates
+|   +-- go.html
+|   +-- master.html
++-- run.py
 data
-|-disaster_categories.csv
-|-disaster_messages.csv
-|-process_data.py
++-- disaster_categories.csv
++-- disaster_messages.csv
++-- process_data.py
 models
-|-train_classifier
++-- train_classifier
 
-##4. How to execute the project:
+## 4. How to execute the project:
 
 1. Run the following commands in the project's root directory to set up the database and model.
 
@@ -38,5 +38,5 @@ models
 3. Open a new web browser window and go to the web address: 
 	`http://WORKSPACESPACEID-3001.WORKSPACEDOMAIN` replacing WORKSPACEID and WORKSPACEDOMAIN with your values.
 
-##5. Licensing, Authors, Acknowledgements
+## 5. Licensing, Authors, Acknowledgements
 Thanks to Udacity for the great lessons regarding ETL and Machine Learning Pipelines.
