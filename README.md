@@ -5,7 +5,7 @@ This is the second project of the Data Science Nanodegree program: A web app is 
 The 3 folders app, data, and model must be copied to a server which runs Flask and Python with the following Python packages: NLTK, RE, SQLAlchemy, Numpy, Pandas, and scikit-learn.
 
 ## 2. Project Motivation
-The project shows how typical data science pipelines can be applied using the example of disaster message classification. At first, an ETL pipeline is used to gather data from two sources (disaster messages and corresponding category classifications), combines them and stores them in a database. Subsequently, the data is loaded into a second pipeline which performs some natural language processing on disaster messages before a Machine Learning model is created and trained. The stored model is then incorporated into a Flask web app. Here, users can enter their own messages which are then classified according to the 36 categories.
+The project shows how typical data science pipelines can be applied using the example of disaster message classification. At first, an ETL pipeline is used to gather data from two sources (disaster messages and corresponding category classifications), combines them, and stores them in a database. Subsequently, the data is loaded into a second pipeline which performs some natural language processing on disaster messages before a Machine Learning model is created and trained. The stored model is then incorporated into a Flask web app. Here, users can enter their own messages which are then classified according to the 36 categories.
 
 ## 3. File Description
 The project has the following structure:
