@@ -5,7 +5,9 @@ import pandas as pd
 from sqlalchemy import create_engine
 
 
+# Extract step: Reads in a message and a categories dataset and merges them into dataframe
 def load_data(messages_filepath, categories_filepath):
+    
     # Read in messages dataset
     messages = pd.read_csv(messages_filepath)
     
@@ -18,6 +20,7 @@ def load_data(messages_filepath, categories_filepath):
     return df
 
 
+# Transform step: Creates 36 category columns describing whether a message belongs to a category or not 
 def clean_data(df):
     # create a dataframe of the 36 individual category columns
     categories = df['categories'].str.split(pat=";", expand=True)
@@ -52,6 +55,7 @@ def clean_data(df):
     return df
 
 
+# Load step: Stores that transformed dataset in a SQLite database
 def save_data(df, database_filename):
     # Create a database
     engine = create_engine("sqlite:///"+database_filename)
@@ -59,7 +63,8 @@ def save_data(df, database_filename):
     #Store the dataframe as a database table
     df.to_sql('OneAndOnlyTable', engine, index=False)  
 
-    
+
+# Processes an ETL pipeline to prepare disaster messages data for a ML pipeline    
 def main():
     if len(sys.argv) == 4:
 
