@@ -27,6 +27,7 @@ from sklearn.neighbors import KNeighborsClassifier
 import pickle
 
 
+# Loads data prepared by an ETL pipeline from a SQLite database
 def load_data(database_filepath):
     # load data from database
     engine = create_engine("sqlite:///"+database_filepath)
@@ -38,6 +39,7 @@ def load_data(database_filepath):
     return X, Y, category_names
 
 
+# Tokenizes text
 def tokenize(text):
     text = re.sub(r"[^a-zA-Z0-9]", " ", text)
     tokens = word_tokenize(text)
@@ -51,30 +53,49 @@ def tokenize(text):
     return clean_tokens
 
 
+# Builds a model
 def build_model():
-    model = Pipeline([
+    pipeline = Pipeline([
         ('vect', CountVectorizer(tokenizer=tokenize)),
         ('tfidf', TfidfTransformer()),
-        ('clf', MultiOutputClassifier(KNeighborsClassifier()))
+        ('clf', MultiOutputClassifier(RandomForestClassifier()))
     ])    
+    
+    parameters = {
+        'clf__estimator__n_estimators': [25, 50],
+        'clf__estimator__criterion': ["gini", "entropy"],
+        'clf__estimator__min_samples_split': [2, 3]
+    }
+    model = GridSearchCV(pipeline, param_grid=parameters)
+
     return model
 
 
+# Evaluates the model
 def evaluate_model(model, X_test, Y_test, category_names):
     # Predict categories for test data
-    Y_pred = pipeline.predict(X_test)
+    Y_pred = model.predict(X_test)
     
-    # Print accuracy for each category    
-    accuracy = (Y_pred == Y_test).mean()
-    print("Accuracy:")
-    print(accuracy)
+    # Statistics
+    
+    # Shows the overall mean accuracy of all categories
+    print("Overall mean accuracy:", (Y_pred == Y_test).mean().mean())
+    print("")
 
+    # Loop over all categories for more statistics
+    for cat in range(len(category_names)):
+        print("Category:", category_names[cat]) # Print the category name
+        print("Accuracy:", (Y_test.loc[:, category_names[cat]] == Y_pred[:, cat]).mean()) # Print the category accuracy
+        print(classification_report(Y_test.loc[:, category_names[cat]], Y_pred[:, cat])) # Print the corresponding classification report
+    
 
+# Saves model as pickle file
 def save_model(model, model_filepath):
-    with open(model_filepath, 'wb') as f:
+    with open(model_filepath, 'wb') as f: 
         pickle.dump(model, f)
 
 
+# Processes a ML pipeline for the classification of disaster messages           
 def main():
     if len(sys.argv) == 3:
         database_filepath, model_filepath = sys.argv[1:]
