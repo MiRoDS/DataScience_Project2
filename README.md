@@ -11,16 +11,16 @@ Goal was to find out whethers renters can benefit from the findings if it is pos
 ## 3. File Description
 The project has the following structure:
 app
-+-- templates
-|   +-- go.html
-|   +-- master.html
-+-- run.py
+├── templates
+│   ├── go.html
+│   ├── master.html
+├── run.py
 data
-+-- disaster_categories.csv
-+-- disaster_messages.csv
-+-- process_data.py
+├── disaster_categories.csv
+├── disaster_messages.csv
+├── process_data.py
 models
-+-- train_classifier
+├── train_classifier
 
 ## 4. How to execute the project:
 
