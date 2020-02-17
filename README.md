@@ -27,7 +27,7 @@ models
 1. Run the following commands in the root directory to set up the database and model.
     - At first run the ETL pipeline that cleans data and stores in a database. The first two parameters are the paths of the two input files. The third parameter is path to the output file. Of course, the paths can be adapted. To process the pipeline, enter:
         `python data/process_data.py data/disaster_messages.csv data/disaster_categories.csv data/DisasterResponse.db`
-    - Subsequently, run the ML pipeline that trains the classifier and saves it. The first parameter is the path to the previously created database. Do not change the second parameter which specifies the output file path. The web app requires that the file is names "classifier.pkl". To process the pipeline, enter:
+    - Subsequently, run the ML pipeline that trains the classifier and saves it. The first parameter is the path to the previously created database. Do not change the second parameter which specifies the output file path. The web app requires that the file is names "classifier.pkl". Please note, that the training process takes a long time (up to an hour depending on your system). To process the pipeline, enter:
         `python models/train_classifier.py data/DisasterResponse.db models/classifier.pkl`
 
 2. Run the following command from the app directory to run the web app.
